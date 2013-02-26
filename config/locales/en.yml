@@ -1,0 +1,18 @@
+en:
+  register:
+    header: 'Register'
+    form:
+      first_name: 'First'
+      last_name: 'Last Name'
+      email_address: 'Email'
+      gender: 'Gender'
+      mailing_address: 'Mailing Address'
+      city: 'City'
+      province: 'Province'
+      rules_and_regulations: 'Rules and Regulations'
+      opt_in: 'Opt In'
+      age_of_consent: 'Age of Consent'
+      submit: 'Submit'
+    confirmation:
+      from_address: 'default@default.com'
+      subject: 'default subject'
