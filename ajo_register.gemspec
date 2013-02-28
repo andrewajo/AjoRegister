@@ -21,6 +21,7 @@ Gem::Specification.new do |s|
   s.add_dependency "haml"
   s.add_dependency "bcrypt-ruby"
   s.add_dependency "devise"
+  s.add_dependency "gem-recaptcha"
   # s.add_dependency "jquery-rails"
 
   s.add_development_dependency "pg"
