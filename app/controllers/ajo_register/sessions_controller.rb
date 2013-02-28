@@ -1,5 +1,5 @@
 require_dependency "ajo_register/application_controller"
-class AjoRegister::SessionController < Devise::SessionsController
+class AjoRegister::SessionsController < Devise::SessionsController
 
   def new
     super
