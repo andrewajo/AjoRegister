@@ -11,6 +11,16 @@ class AjoRegister::RegistrationsController < Devise::RegistrationsController
     super
   end
 
+  def create
+    super
+  end
+
+  def edit
+    super
+  end
+
+
+
   def thank_you
   end
 end

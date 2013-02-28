@@ -5,8 +5,5 @@ AjoRegister::Engine.routes.draw do
 
   devise_scope :user do
     root :to => 'registrations#new'
-    authenticated :user do
-      root :to => "ajo_register/registrations#thank_you"
-    end
   end
 end
