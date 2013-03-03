@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(:version => 20130226175039) do
     t.string   "mailing_address"
     t.string   "city"
     t.string   "province"
+    t.date     "date_of_birth"
     t.boolean  "rules_and_regulations"
     t.boolean  "opt_in"
     t.boolean  "age_of_consent"
