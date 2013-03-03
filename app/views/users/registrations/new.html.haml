@@ -24,7 +24,7 @@
 
     .field
         = f.label :province
-        = f.text_field :province
+        = f.select :province, I18n.t('registration.form.provinces').map{|key, value| [value[:option], value[:value]]}
         .error= resource.errors['province'].first
 
 
