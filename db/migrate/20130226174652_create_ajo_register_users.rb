@@ -10,6 +10,7 @@ class CreateAjoRegisterUsers < ActiveRecord::Migration
       t.date :date_of_birth
       t.boolean :rules_and_regulations
       t.boolean :opt_in
+      t.boolean :opt_in_confirmed
       t.boolean :age_of_consent
 
       t.timestamps

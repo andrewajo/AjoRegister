@@ -32,7 +32,7 @@
     <orderEntry type="library" scope="PROVIDED" name="arel (v3.0.2, RVM: ruby-1.9.2-p180) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bcrypt-ruby (v3.0.1, RVM: ruby-1.9.2-p180) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="builder (v3.0.4, RVM: ruby-1.9.2-p180) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="bundler (v1.2.0.rc.2, RVM: ruby-1.9.2-p180) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="bundler (v1.2.1, RVM: ruby-1.9.2-p180) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="daemons (v1.1.9, RVM: ruby-1.9.2-p180) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="devise (v2.2.3, RVM: ruby-1.9.2-p180) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="erubis (v2.7.0, RVM: ruby-1.9.2-p180) [gem]" level="application" />
