@@ -14,7 +14,7 @@ class AjoRegister::RegistrationsController < Devise::RegistrationsController
       resource.valid?
       resource.errors.add(:recaptcha, "* Please try again")
       clean_up_passwords(resource)
-      respond_with resource, :location => :back
+      respond_with resource, :location => new_user_registration_path
     else
       flash.delete :recaptcha_error
       super
