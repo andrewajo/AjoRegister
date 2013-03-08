@@ -21,6 +21,8 @@ module AjoRegister
     validates_presence_of :city, :message => I18n.t('register.form_errors.city.required')
     validates_presence_of :province, :message => I18n.t('register.form_errors.province.required')
     validates_presence_of :password, :message => I18n.t('register.form_errors.password.required')
+    validates_confirmation_of :password, :message => I18n.t('register.form_errors.password.confirmation')
     validates_presence_of :password_confirmation, :message => I18n.t('register.form_errors.password_confirmation.required')
+    validates :rules_and_regulations, :acceptance => {:accept => true}, :message => I18n.t('register.form_errors.rules_and_regulations.agree')
   end
 end
