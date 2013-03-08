@@ -8,14 +8,15 @@ class AjoRegister::RegistrationsController < Devise::RegistrationsController
   end
 
   def create
-    if verify_recaptcha
-      super
-    else
-      build_resource
-      clean_up_passwords(resource)
-      resource.errors.add(:recaptcha, 'Incorrect. Please try again!')
-      respond_with resource
-    end
+    super
+    #if verify_recaptcha
+    #  super
+    #else
+    #  build_resource
+    #  clean_up_passwords(resource)
+    #  resource.errors.add(:recaptcha, 'Incorrect. Please try again!')
+    #  respond_with resource
+    #end
   end
 
   def edit
