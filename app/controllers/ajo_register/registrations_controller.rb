@@ -24,10 +24,9 @@ class AjoRegister::RegistrationsController < Devise::RegistrationsController
 
   def thank_you
   end
-  protected
 
-  def after_update_path_for(resource)
-    Rails.logger.info "CALLED"
-    user_path(resource)
+  protected
+  def after_inactive_sign_up_path_for(resource)
+    main_app.registration_thank_you_path
   end
 end

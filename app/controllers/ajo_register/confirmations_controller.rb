@@ -1,9 +1,5 @@
 require_dependency "ajo_register/application_controller"
 class AjoRegister::ConfirmationsController < Devise::ConfirmationsController
-  def after_inactive_sign_up_path_for(resource)
-    main_app.after_sign_up_path
-  end
-
   def new
     super
   end
