@@ -13,14 +13,14 @@ module AjoRegister
     validates_presence_of :first_name, :message => I18n.t('register.form_errors.first_name.required')
     validates_presence_of :last_name, :message => I18n.t('register.form_errors.last_name.required')
     validates_presence_of :email, :message => I18n.t('register.form_errors.email.required')
+    validates_uniqueness_of :email, :message => I18n.t('register.form_errors.email.unique')
+    validates_format_of :email, :with => Devise.email_regexp, :message => I18n.t('register.form_errors.email.format')
     validates_presence_of :gender, :message => I18n.t('register.form_errors.gender.required')
     validates_presence_of :date_of_birth, :message => I18n.t('register.form_errors.date_of_birth.required')
     validates_presence_of :mailing_address, :message => I18n.t('register.form_errors.mailing_address.required')
     validates_presence_of :city, :message => I18n.t('register.form_errors.city.required')
     validates_presence_of :province, :message => I18n.t('register.form_errors.province.required')
-    validates_presence_of :password, :password => I18n.t('register.form_errors.password.required')
-    validates_presence_of :password_confirmation, :password => I18n.t('register.form_errors.password_confirmation.required')
-
-
+    validates_presence_of :password, :message => I18n.t('register.form_errors.password.required')
+    validates_presence_of :password_confirmation, :message => I18n.t('register.form_errors.password_confirmation.required')
   end
 end
