@@ -8,12 +8,16 @@ class AjoRegister::RegistrationsController < Devise::RegistrationsController
   end
 
   def create
-    build_resource
-    if verify_recaptcha
-      super
+    if !verify_recaptcha
+      flash.delete :recaptcha_error
+      build_resource
+      resource.valid?
+      resource.errors.add(:base, "There was an error with the recaptcha code below. Please re-enter the code.")
+      clean_up_passwords(resource)
+      respond_with_navigational(resource) { render_with_scope :new }
     else
-      clean_up_passwords resource
-      respond_with resource
+      flash.delete :recaptcha_error
+      super
     end
   end
 
