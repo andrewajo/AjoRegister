@@ -12,7 +12,7 @@ class AjoRegister::RegistrationsController < Devise::RegistrationsController
       flash.delete :recaptcha_error
       build_resource
       resource.valid?
-      resource.errors.add(:base, "There was an error with the recaptcha code below. Please re-enter the code.")
+      resource.errors.add(:recaptcha, "* Please try again")
       clean_up_passwords(resource)
       respond_with resource, :location => new_user_registration_path
     else
