@@ -8,11 +8,11 @@ class AjoRegister::RegistrationsController < Devise::RegistrationsController
   end
 
   def create
+    build_resource
     if verify_recaptcha
       super
     else
-      build_resource
-      clean_up_passwords(resource)
+      clean_up_passwords resource
       respond_with resource
     end
   end
