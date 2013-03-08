@@ -4,6 +4,6 @@ AjoRegister::Engine.routes.draw do
   match '/registration_thank_you' => 'ajo_register/registrations#thank_you', :as => 'register_thank_you'
 
   devise_scope :user do
-    #root :to => 'registrations#new'
+    root :to => 'registrations#new'
   end
 end
