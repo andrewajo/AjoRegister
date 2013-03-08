@@ -24,4 +24,10 @@ class AjoRegister::RegistrationsController < Devise::RegistrationsController
 
   def thank_you
   end
+  protected
+
+  def after_update_path_for(resource)
+    Rails.logger.info "CALLED"
+    user_path(resource)
+  end
 end
