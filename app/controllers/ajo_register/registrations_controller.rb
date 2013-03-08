@@ -26,7 +26,7 @@ class AjoRegister::RegistrationsController < Devise::RegistrationsController
   end
 
   protected
-  def after_sign_up_path_for(resource_or_scope)
+  def after_sign_up_path_for(resource)
     main_app.registration_thank_you_path
   end
 end
