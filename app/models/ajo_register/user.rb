@@ -24,5 +24,18 @@ module AjoRegister
     validates_confirmation_of :password, :message => I18n.t('register.form_errors.password.confirmation'), :on => :create
     validates_presence_of :password_confirmation, :message => I18n.t('register.form_errors.password_confirmation.required'), :on => :create
     validates :rules_and_regulations, :acceptance => {:accept => true, :message => I18n.t('register.form_errors.rules_and_regulations.agree')}
+    validates_presence_of     :password, :message => I18n.t('register.form_errors.password.required'), :if => :password_required?
+    validates_confirmation_of :password, :message => I18n.t('register.form_errors.password.confirmation'), :if => :password_required?
+    validates_length_of       :password, :message => I18n.t('register.form_errors.password.length'), :within => 5, :allow_blank => true
+  end
+
+  def password_required?
+    # If resetting the password
+    return true if reset_password_token.present? && reset_password_period_valid?
+
+    # If the person already has a pass, only validate if they are updating pass
+    if !encrypted_password.blank?
+      password.present? || password_confirmation.present?
+    end
   end
 end
