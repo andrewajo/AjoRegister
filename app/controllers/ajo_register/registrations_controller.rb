@@ -13,7 +13,7 @@ class AjoRegister::RegistrationsController < Devise::RegistrationsController
     else
       build_resource
       clean_up_passwords(resource)
-      resource.errors.recaptcha.add('Incorrect. Please try again!')
+      resource.errors.recaptcha.add(:recaptcha, 'Incorrect. Please try again!')
       respond_with resource
     end
   end
