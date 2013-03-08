@@ -1,9 +1,5 @@
 require_dependency "ajo_register/application_controller"
 class AjoRegister::RegistrationsController < Devise::RegistrationsController
-  def after_sign_up_path_for(resource)
-    '/registration_thank_you'
-  end
-
   def index
   end
 
@@ -26,8 +22,11 @@ class AjoRegister::RegistrationsController < Devise::RegistrationsController
     super
   end
 
-
-
   def thank_you
+  end
+
+  protected
+  def after_sign_up_path_for(resource_or_scope)
+    main_app.registration_thank_you_path
   end
 end
