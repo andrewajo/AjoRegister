@@ -33,7 +33,8 @@ class AjoRegister::PasswordsController < Devise::PasswordsController
       sign_in(resource_name, resource)
       respond_with resource, :location => after_sign_in_path_for(resource)
     else
-      redirect_to edit_password_url(resource, :reset_password_token => resource.reset_password_token)
+      @errors = resource.errors
+      render edit_password_url(resource, :reset_password_token => resource.reset_password_token)
     end
   end
 
