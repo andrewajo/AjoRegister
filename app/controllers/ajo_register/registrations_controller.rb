@@ -53,6 +53,7 @@ class AjoRegister::RegistrationsController < Devise::RegistrationsController
           respond_with resource
         else
           Rails.logger.info "REDIRECTING TO SIGN UP"
+          Rails.logger.info resource.errors.to_json
           flash[:error] = resource.errors
           redirect_to main_app.facebook_register_path
         end
