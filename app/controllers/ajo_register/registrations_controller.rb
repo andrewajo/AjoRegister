@@ -15,7 +15,7 @@ class AjoRegister::RegistrationsController < Devise::RegistrationsController
       resource.errors.add(:recaptcha, "* Please try again")
       clean_up_passwords(resource)
       if resource.source == 'facebook'
-        Rails.logger.info "REDIRECTING TO SIGN UP"
+        Rails.logger.info "NO CAPTCHA REDIRECTING TO SIGN UP"
         flash[:error] = resource.errors
         redirect_to main_app.facebook_register_path
       else
@@ -52,7 +52,7 @@ class AjoRegister::RegistrationsController < Devise::RegistrationsController
         if resource.source != 'facebook'
           respond_with resource
         else
-          Rails.logger.info "REDIRECTING TO SIGN UP"
+          Rails.logger.info "NOT SAVED REDIRECTING TO SIGN UP"
           Rails.logger.info resource.errors.to_json
           flash[:error] = resource.errors
           redirect_to main_app.facebook_register_path
