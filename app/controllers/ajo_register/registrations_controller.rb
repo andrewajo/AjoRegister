@@ -23,7 +23,7 @@ class AjoRegister::RegistrationsController < Devise::RegistrationsController
       flash.delete :recaptcha_error
       build_resource
       if resource.source == 'facebook'
-        skip_confirmation!
+        resource.skip_confirmation!
       end
       if resource.save
         if resource.active_for_authentication?
