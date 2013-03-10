@@ -7,6 +7,7 @@ class CreateAjoRegisterUsers < ActiveRecord::Migration
       t.string :mailing_address
       t.string :city
       t.string :province
+      t.string :source
       t.date :date_of_birth
       t.boolean :rules_and_regulations
       t.boolean :opt_in
