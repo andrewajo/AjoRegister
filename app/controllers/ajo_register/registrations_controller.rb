@@ -15,7 +15,9 @@ class AjoRegister::RegistrationsController < Devise::RegistrationsController
       resource.errors.add(:recaptcha, "* Please try again")
       clean_up_passwords(resource)
       if resource.source == 'facebook'
-        respond_with resource, :location => main_app.facebook_register_path
+        Rails.logger.info "REDIRECTING TO SIGN UP"
+        flash[:error] = resource.errors
+        redirect_to main_app.facebook_register_path
       else
         respond_with resource, :location => new_user_registration_path
       end
