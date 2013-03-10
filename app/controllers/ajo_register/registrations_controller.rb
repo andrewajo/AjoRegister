@@ -45,7 +45,11 @@ class AjoRegister::RegistrationsController < Devise::RegistrationsController
         end
       else
         clean_up_passwords resource
-        respond_with resource
+        if resource.source != 'facebook'
+          respond_with resource
+        else
+          respond_with resource, :location => main_app.facebook_register_path
+        end
       end
     end
   end
