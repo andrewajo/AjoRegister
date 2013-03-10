@@ -32,6 +32,7 @@ class AjoRegister::RegistrationsController < Devise::RegistrationsController
           if resource.source != 'facebook'
             respond_with resource, :location => after_sign_up_path_for(resource)
           else
+            expire_session_data_after_sign_in!
             redirect_to main_app.facebook_word_of_the_day_path
           end
         else
