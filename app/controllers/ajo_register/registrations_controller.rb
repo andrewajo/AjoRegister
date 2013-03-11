@@ -17,7 +17,7 @@ class AjoRegister::RegistrationsController < Devise::RegistrationsController
       if resource.source == 'facebook'
         Rails.logger.info "NO CAPTCHA REDIRECTING TO SIGN UP"
         flash[:error] = resource.errors
-        redirect_to main_app.facebook_register_path
+        respond_with(resource, location: request.referer)
       else
         respond_with resource, :location => new_user_registration_path
       end
