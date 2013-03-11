@@ -17,14 +17,14 @@ class AjoRegister::RegistrationsController < Devise::RegistrationsController
       if resource.source == 'facebook'
         Rails.logger.info "NO CAPTCHA REDIRECTING TO SIGN UP"
         flash[:error] = resource.errors
-        respond_with(resource, :location => 'http://www.google.com')
+        redirect_to main_app.facebook_register_path
       else
         respond_with resource, :location => new_user_registration_path
       end
     else
       flash.delete :recaptcha_error
       build_resource
-      if resource.source == 'facebook'
+      if resource.source == 'facebook' && resource.opt_in != true
         resource.skip_confirmation!
       end
       if resource.save
@@ -55,7 +55,11 @@ class AjoRegister::RegistrationsController < Devise::RegistrationsController
           Rails.logger.info "NOT SAVED REDIRECTING TO SIGN UP"
           Rails.logger.info resource.errors.to_json
           flash[:error] = resource.errors
-          respond_with(resource, location: request.referer)
+          @user = resource
+          respond_to do |format|
+            format.html { redirect_to main_app.facebook_register_path}
+            format.xml { render :xml => @user }
+          end
         end
       end
     end
