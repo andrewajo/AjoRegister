@@ -55,8 +55,7 @@ class AjoRegister::RegistrationsController < Devise::RegistrationsController
           Rails.logger.info "NOT SAVED REDIRECTING TO SIGN UP"
           Rails.logger.info resource.errors.to_json
           flash[:error] = resource.errors
-          @user = resource
-          respond_with(@user, location: request.referer)
+          respond_with(resource, location: request.referer)
         end
       end
     end
