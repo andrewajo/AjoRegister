@@ -6,7 +6,7 @@ class AjoRegister::ConfirmationsController < Devise::ConfirmationsController
 
   def create
     if resource.source == 'facebook'
-      self.resource = resource_class.send_facebook_instructions(resource_params)
+      Rails.logger.info "SEND FACEBOOK"
     else
       self.resource = resource_class.send_confirmation_instructions(resource_params)
     end
