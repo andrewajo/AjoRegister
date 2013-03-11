@@ -55,6 +55,7 @@ class AjoRegister::RegistrationsController < Devise::RegistrationsController
           Rails.logger.info "NOT SAVED REDIRECTING TO SIGN UP"
           Rails.logger.info resource.errors.to_json
           flash[:error] = resource.errors
+          flash[:resource] = resource
           @user = resource
           respond_to do |format|
             format.html { redirect_to main_app.facebook_register_path}
