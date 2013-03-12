@@ -13,7 +13,7 @@ module AjoRegister
     validates_presence_of :first_name, :message => I18n.t('register.form_errors.first_name.required')
     validates_presence_of :last_name, :message => I18n.t('register.form_errors.last_name.required')
     validates_presence_of :email, :message => I18n.t('register.form_errors.email.required')
-    validates_uniqueness_of :email, :message => I18n.t('register.form_errors.email.unique')
+    validates_uniqueness_of :email, :message => I18n.t('register.form_errors.email.unique'), :if =>:facebook_registration?
     validates_format_of :email, :with => Devise.email_regexp, :message => I18n.t('register.form_errors.email.format')
     validates_presence_of :gender, :message => I18n.t('register.form_errors.gender.required')
     validates_presence_of :date_of_birth, :message => I18n.t('register.form_errors.date_of_birth.required')
@@ -38,5 +38,8 @@ module AjoRegister
       end
     end
 
+    def facebook_registration?
+      return true unless self.source == 'facebook'
+    end
   end
 end
