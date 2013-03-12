@@ -30,7 +30,7 @@ module AjoRegister
 
     def password_required?
       # If resetting the password
-      return true if reset_password_token.present? && reset_password_period_valid? && self.source != 'facebook'
+      return true if reset_password_token.present? && reset_password_period_valid? || self.source != 'facebook'
 
       # If the person already has a pass, only validate if they are updating pass
       if !encrypted_password.blank?
