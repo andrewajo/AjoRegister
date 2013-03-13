@@ -19,9 +19,13 @@ class AjoRegister::ConfirmationsController < Devise::ConfirmationsController
     if resource.errors.empty?
       set_flash_message(:notice, :confirmed) if is_navigational_format?
       sign_in(resource_name, resource)
-      redirect_to main_app.double_opt_in_path
+      if resource.source == 'facebook'
+        redirect_to main_app.double_opt_in_path(:facebook => true)
+      else
+        redirect_to main_app.double_opt_in_path
+      end
     else
-      respond_with_navigational(resource.errors, :status => :unprocessable_entity){ render :new }
+      redirect_to main_app.root_path
     end
   end
 
