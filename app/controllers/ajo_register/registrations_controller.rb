@@ -8,9 +8,9 @@ class AjoRegister::RegistrationsController < Devise::RegistrationsController
   end
 
   def create
-    if !verify_recaptcha
+    build_resource
+    if !verify_recaptcha && resource.source != 'facebook'
       flash.delete :recaptcha_error
-      build_resource
       resource.valid?
       resource.errors.add(:recaptcha, "* Please try again")
       clean_up_passwords(resource)
@@ -23,7 +23,6 @@ class AjoRegister::RegistrationsController < Devise::RegistrationsController
       end
     else
       flash.delete :recaptcha_error
-      build_resource
       if resource.source == 'facebook' && resource.opt_in != true
         resource.skip_confirmation!
       end
