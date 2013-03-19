@@ -9,22 +9,22 @@ module AjoRegister
     # Setup accessible (or protected) attributes for your model
     attr_accessible :password, :password_confirmation, :remember_me, :source, :facebook_id, :age_of_consent, :city, :email, :first_name, :gender, :last_name, :mailing_address, :opt_in, :opt_in_confirmed, :province, :rules_and_regulations, :password, :password_confirmation, :date_of_birth
 
-    validates_presence_of :first_name, :message => I18n.t('register.form_errors.first_name.required')
-    validates_presence_of :last_name, :message => I18n.t('register.form_errors.last_name.required')
-    validates_presence_of :email, :message => I18n.t('register.form_errors.email.required')
-    validates_uniqueness_of :email, :message => I18n.t('register.form_errors.email.unique'), :if =>:facebook_registration?
-    validates_format_of :email, :with => Devise.email_regexp, :message => I18n.t('register.form_errors.email.format')
-    validates_presence_of :gender, :message => I18n.t('register.form_errors.gender.required')
-    validates_presence_of :date_of_birth, :message => I18n.t('register.form_errors.date_of_birth.required')
-    validates_presence_of :mailing_address, :message => I18n.t('register.form_errors.mailing_address.required')
-    validates_presence_of :city, :message => I18n.t('register.form_errors.city.required')
-    validates_presence_of :province, :message => I18n.t('register.form_errors.province.required')
-    validates :rules_and_regulations, :acceptance => {:accept => true, :message => I18n.t('register.form_errors.rules_and_regulations.agree')}
+    validates_presence_of :first_name
+    validates_presence_of :last_name
+    validates_presence_of :email
+    validates_uniqueness_of :email, :if =>:facebook_registration?
+    validates_format_of :email, :with => Devise.email_regexp
+    validates_presence_of :gender
+    validates_presence_of :date_of_birth
+    validates_presence_of :mailing_address
+    validates_presence_of :city
+    validates_presence_of :province
+    validates :rules_and_regulations, :acceptance => {:accept => true}
 
-    validates_presence_of :password, :message => I18n.t('register.form_errors.password.required'), :if => :password_required?
-    validates_confirmation_of :password, :message => I18n.t('register.form_errors.password.confirmation'), :if => :password_required?
-    validates_presence_of :password_confirmation, :message => I18n.t('register.form_errors.password_confirmation.required'), :if => :password_required?
-    validates_length_of :password, :message => I18n.t('register.form_errors.password.length'), :in => 5..25, :allow_blank => true
+    validates_presence_of :password, :if => :password_required?
+    validates_confirmation_of :password, :if => :password_required?
+    validates_presence_of :password_confirmation, :if => :password_required?
+    validates_length_of :password, :in => 5..25, :allow_blank => true
 
     def password_required?
       # If resetting the password
