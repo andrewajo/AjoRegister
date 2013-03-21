@@ -11,7 +11,7 @@ class AjoRegister::PasswordsController < Devise::PasswordsController
     if successfully_sent?(resource)
       respond_with({}, :location => after_sending_reset_password_instructions_path_for(resource_name))
     else
-      redirect_to :back, :flash => {:reset_error => 'Invalid Email'}
+      redirect_to :back, :flash => {:reset_error => I18n.t('login.invalid_email'}
     end
   end
 
