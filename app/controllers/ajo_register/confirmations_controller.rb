@@ -25,7 +25,7 @@ class AjoRegister::ConfirmationsController < Devise::ConfirmationsController
         redirect_to main_app.double_opt_in_path
       end
     else
-      redirect_to main_app.root_path
+      redirect_to main_app.root_path(:locale => I18n.locale)
     end
   end
 
