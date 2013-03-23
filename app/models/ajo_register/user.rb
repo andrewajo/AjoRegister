@@ -37,7 +37,7 @@ module AjoRegister
     end
 
     def email_unique
-      self.errors.add('email', :unique) if User.where('email = ? AND source = ?', self.email, self.source)
+      self.errors.add('email', :unique) if User.where('email = ? AND source = ?', self.email, self.source).count > 0
     end
   end
 end
