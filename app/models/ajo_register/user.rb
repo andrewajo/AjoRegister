@@ -12,7 +12,7 @@ module AjoRegister
     validates_presence_of :first_name
     validates_presence_of :last_name
     validates_presence_of :email
-    validates_uniqueness_of :email, :if =>:facebook_registration?
+    validate :email_unique
     validates_format_of :email, :with => Devise.email_regexp
     validates_presence_of :gender
     validates_presence_of :date_of_birth
@@ -36,8 +36,8 @@ module AjoRegister
       end
     end
 
-    def facebook_registration?
-      return true unless self.source == 'facebook'
+    def email_unique
+      self.errors.add('email', :unique) if User.where('email = ? AND source = ?', self.email, self.source)
     end
   end
 end
