@@ -1,12 +1,17 @@
 require_dependency "ajo_register/application_controller"
 class AjoRegister::RegistrationsController < Devise::RegistrationsController
+  before_filter :force_non_ssl, :only => :new
+
+  def force_non_ssl
+    if request.ssl? && Rails.env.production?
+      redirect_to :protocol => 'http://', :status => :moved_permanently
+    end
+  end
+
   def index
   end
 
   def new
-    if request.ssl? && Rails.env.production?
-      redirect_to :protocol => 'http://', :status => :moved_permanently
-    end
     super
   end
 
