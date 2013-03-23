@@ -39,5 +39,9 @@ module AjoRegister
     def email_unique
       self.errors.add('email', :unique) if User.where('email = ? AND source = ?', self.email, self.source).count > 0
     end
+
+    self.find_for_database_authentication(conditions={})
+       self.where("email = ? && source = ?", conditions[:email], 'microsite').limit(1).first
+    end
   end
 end
