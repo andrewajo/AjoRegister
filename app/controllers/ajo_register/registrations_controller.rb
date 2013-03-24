@@ -18,7 +18,6 @@ class AjoRegister::RegistrationsController < Devise::RegistrationsController
   def create
     build_resource
     if !verify_recaptcha && resource.source != 'facebook'
-      Rails.logger.info "ERRORS FOUND NOT FACEBOOK"
       flash.delete :recaptcha_error
       resource.valid?
       resource.errors.add(:recaptcha, "* Please try again")
@@ -31,7 +30,6 @@ class AjoRegister::RegistrationsController < Devise::RegistrationsController
         respond_with resource, :location => new_user_registration_path
       end
     else
-      Rails.logger.info "NO ERRORS FOUND"
       flash.delete :recaptcha_error
       if resource.source == 'facebook' && resource.opt_in != true
         resource.skip_confirmation!
