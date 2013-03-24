@@ -12,7 +12,7 @@ module AjoRegister
     validates_presence_of :first_name
     validates_presence_of :last_name
     validates_presence_of :email
-    validate :email_unique
+    validate :email_unique, :on => :create
     validates_format_of :email, :with => Devise.email_regexp
     validates_presence_of :gender
     validates_presence_of :date_of_birth
