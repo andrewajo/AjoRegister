@@ -18,6 +18,7 @@ class AjoRegister::RegistrationsController < Devise::RegistrationsController
   def create
     build_resource
     if !verify_recaptcha && resource.source != 'facebook'
+      Rails.logger.info "ERRORS FOUND NOT FACEBOOK"
       flash.delete :recaptcha_error
       resource.valid?
       resource.errors.add(:recaptcha, "* Please try again")
@@ -30,6 +31,7 @@ class AjoRegister::RegistrationsController < Devise::RegistrationsController
         respond_with resource, :location => new_user_registration_path
       end
     else
+      Rails.logger.info "NO ERRORS FOUND"
       flash.delete :recaptcha_error
       if resource.source == 'facebook' && resource.opt_in != true
         resource.skip_confirmation!
@@ -39,7 +41,7 @@ class AjoRegister::RegistrationsController < Devise::RegistrationsController
           set_flash_message :notice, :signed_up if is_navigational_format?
           sign_up(resource_name, resource)
           if resource.source != 'facebook'
-            #respond_with resource, :location => after_sign_up_path_for(resource)
+            respond_with resource, :location => after_sign_up_path_for(resource)
           else
             Rails.logger.info "REDIRECTING TO WORD OF THE DAY!"
             expire_session_data_after_sign_in!

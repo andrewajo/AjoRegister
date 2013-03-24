@@ -41,7 +41,7 @@ module AjoRegister
     end
 
     def self.find_for_database_authentication(conditions={})
-       self.where("email = ? && source = ?", conditions[:email], 'microsite').limit(1).first
+       self.where("email = ? && source = ?", conditions[:email], self.source).limit(1).first
     end
   end
 end
