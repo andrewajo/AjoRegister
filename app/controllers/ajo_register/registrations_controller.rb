@@ -16,6 +16,7 @@ class AjoRegister::RegistrationsController < Devise::RegistrationsController
   end
 
   def create
+    skip_before_filter :require_no_authentication
     build_resource
     if !verify_recaptcha && resource.source != 'facebook'
       flash.delete :recaptcha_error
