@@ -1,6 +1,7 @@
 require_dependency "ajo_register/application_controller"
 class AjoRegister::RegistrationsController < Devise::RegistrationsController
   before_filter :force_non_ssl, :only => :new
+  skip_before_filter :require_no_authentication, :only => :create
 
   def force_non_ssl
     if request.ssl? && Rails.env.production?
@@ -16,7 +17,6 @@ class AjoRegister::RegistrationsController < Devise::RegistrationsController
   end
 
   def create
-    skip_before_filter :require_no_authentication
     build_resource
     if !verify_recaptcha && resource.source != 'facebook'
       flash.delete :recaptcha_error
