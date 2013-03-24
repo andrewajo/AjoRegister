@@ -32,7 +32,6 @@ class AjoRegister::RegistrationsController < Devise::RegistrationsController
     else
       flash.delete :recaptcha_error
       if resource.source == 'facebook' && resource.opt_in != true
-        Rails.logger "confirmation is skippped"
         resource.skip_confirmation!
       end
       if resource.save
