@@ -6,9 +6,6 @@ class AjoRegister::SessionsController < Devise::SessionsController
   end
 
   def create
-    if current_user?
-      logout current_user
-    end
     super
   end
 
