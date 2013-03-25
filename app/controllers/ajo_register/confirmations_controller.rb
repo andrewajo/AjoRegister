@@ -15,7 +15,6 @@ class AjoRegister::ConfirmationsController < Devise::ConfirmationsController
   end
 
   def show
-    sign_out current_user
     self.resource = resource_class.confirm_by_token(params[:confirmation_token])
     if resource.errors.empty?
       set_flash_message(:notice, :confirmed) if is_navigational_format?
