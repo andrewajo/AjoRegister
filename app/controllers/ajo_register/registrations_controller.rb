@@ -40,11 +40,11 @@ class AjoRegister::RegistrationsController < Devise::RegistrationsController
           set_flash_message :notice, :signed_up if is_navigational_format?
           sign_up(resource_name, resource)
           if resource.source != 'facebook'
-            respond_with resource, :location => after_sign_up_path_for(resource, :registered => 'true')
+            respond_with resource, :location => after_sign_up_path_for(resource)
           else
             Rails.logger.info "REDIRECTING TO WORD OF THE DAY!"
             expire_session_data_after_sign_in!
-            redirect_to main_app.facebook_word_of_the_day_path
+            redirect_to main_app.facebook_word_of_the_day_path(:registered => 'true')
           end
         else
           set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_navigational_format?
@@ -52,7 +52,7 @@ class AjoRegister::RegistrationsController < Devise::RegistrationsController
           if resource.source != 'facebook'
             respond_with resource, :location => after_inactive_sign_up_path_for(resource)
           else
-            redirect_to main_app.facebook_word_of_the_day_path
+            redirect_to main_app.facebook_word_of_the_day_path(:registered => 'true')
           end
         end
       else
