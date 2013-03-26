@@ -7,7 +7,7 @@ module AjoRegister
            :recoverable, :rememberable, :trackable
   
     # Setup accessible (or protected) attributes for your model
-    attr_accessible :password, :password_confirmation, :remember_me, :source, :facebook_id, :age_of_consent, :city, :email, :first_name, :gender, :last_name, :mailing_address, :opt_in, :opt_in_confirmed, :province, :rules_and_regulations, :password, :password_confirmation, :date_of_birth
+    attr_accessible :password, :password_confirmation, :remember_me, :source, :facebook_id, :age_of_consent, :city, :email, :first_name, :gender, :last_name, :mailing_address, :opt_in, :opt_in_confirmed, :province, :rules_and_regulations, :password, :password_confirmation, :date_of_birth, :locale
 
     validates_presence_of :first_name
     validates_presence_of :last_name
