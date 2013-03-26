@@ -40,7 +40,7 @@ class AjoRegister::RegistrationsController < Devise::RegistrationsController
           set_flash_message :notice, :signed_up if is_navigational_format?
           sign_up(resource_name, resource)
           if resource.source != 'facebook'
-            respond_with resource, :location => after_sign_up_path_for(resource)
+            respond_with resource, :location => after_sign_up_path_for(resource, :registered => 'true')
           else
             Rails.logger.info "REDIRECTING TO WORD OF THE DAY!"
             expire_session_data_after_sign_in!
